@@ -1,0 +1,226 @@
+
+
+
+% Any string of zero or more characters
+
+_  Any single character
+
+[ ] Any single character within the specified range (e.g., [a-f]) or set (e.g., [abcdef])
+
+[^] Any single character not within the specified range (e.g., [^a – f]) or set (e.g., [^abcdef])
+
+
+-----------------------------------------------------------------------------------------------------
+PRACT-3 
+
+INSERT INTO table name  VALUES();
+
+UPDATE table name SET new column1 data =' ',new column2 data ='  ' WHERE  original column data ='';
+
+DELETE FROM table_name 
+DELETE FROM table_name WHERE column_data/condition ;
+
+SELECT -FROM-WHERE
+
+SELECT column_name FROM table_name WHERE column_name IN (values);
+
+SELECT * FROM table_name WHERE column_name IN (values);
+
+SELECT * FROM table_name WHERE column_name LIKE ('%HII%');
+
+SELECT * FROM table_name WHERE column_name IS NULL;
+--------------------------------------------------------------------------------------------------------------------
+PRACT-4 
+
+Primary key , foreign key 
+Alter command, 
+update command 
+where clause,
+conditional updates
+conditional & Logical operators 
+select command operation 
+like operation
+Integrity functions
+Number Function 
+Aggregate Function 
+Character Function
+Conversion Function
+Date Function
+
+IS Null , IS NOT NULL,
+--------------------------------------------------------------------------------------------------------------------------------
+pract-5 
+
+GROUP CONCAT, GROUP ROLLUP 
+SUB QUERIES IN & NOT IN 
+CASE-WHEN 
+SQL JOINS 
+VIEWS
+EXISTS AND NOT EXISTS 
+WINDOW FUNCTIONS- 
+PARTITION
+FRAME CLAUSE 
+COALESCE FUNCTION 
+COMMON TABLE EXPRESSIONS- INTERATIVE & RECURSIVE 
+RANKING & DENSE RANKING
+
+SELECT 	column1, column2
+FROM 	table_name
+WHERE 	[ conditions ] 
+GROUP BY 	column1, column2 
+Having 	[condition]
+ORDER BY column1, column2
+
+GROUP BY clause is used in conjunction with an aggregate expression (like SUM, COUNT etc). 
+It is used in select statements to divide a table into groups and to return only groups that 
+match conditions in the having clause.
+
+The SQL GROUP BY clause is used in collaboration with the SELECT statement to 
+arrange identical data into groups.
+
+The HAVING clause was added to SQL because the WHERE keyword could not be 
+used with aggregate functions.
+
+The SQL ORDER BY clause is used to sort the data in ascending or descending order, based 
+on one or more columns. Some database sorts query results in ascending order by default.
+
+INDEXING: An index is an ordered set of pointers to the data in a table. It is based on the data 
+values in one or more columns of the table. SQL Base stores indexes separately from tables. 
+An index provides two benefits: 
+
+• It improves performance because it makes data access faster. 
+
+• It ensures uniqueness. A table with a unique index cannot have two rows with the same 
+	values in the column or columns that form the index key. 
+
+Syntax: CREATE INDEX on (attrib1,attrib 2….attrib n); 
+Example: CREATE INDEX id1 on emp(empno,dept_no);
+
+When would you use a HAVING clause versus a WHERE clause?
+
+A HAVING clause is like a WHERE clause, but applies only to groups as a whole (that is, to the rows in the result set representing groups),
+whereas the WHERE clause applies to individual rows. A query can contain both a WHERE clause and a HAVING clause.
+
+Can we use WHERE clause with group by and HAVING?
+
+The HAVING clause is used instead of WHERE with aggregate functions. While the GROUP BY Clause groups rows that have the same values into summary rows. The having
+clause is used with the where clause in order to find rows with certain conditions. The having clause is always used after the group By clause.
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+A JOIN clause is used to combine rows from two or more tables, based on a related column between them.
+
+INNER JOIN: Returns records that have matching values in both tables
+LEFT JOIN: Returns all records from the left table, and the matched records from the right table
+RIGHT JOIN: Returns all records from the right table, and the matched records from the left table
+CROSS JOIN: Returns all records from both tables
+
+INNER JOIN Syntax:
+-----------------
+SELECT column_name(s)
+FROM table1
+INNER JOIN table2
+ON table1.column_name = table2.column_name;
+
+LEFT JOIN Syntax:
+-----------------
+SELECT column_name(s)
+FROM table1
+LEFT JOIN table2
+ON table1.column_name = table2.column_name;
+Note: The LEFT JOIN keyword returns all records from the left table (Customers), even if there are no matches in the right table (Orders).
+
+
+RIGHT JOIN Syntax:
+-------------------
+SELECT column_name(s)
+FROM table1
+RIGHT JOIN table2
+ON table1.column_name = table2.column_name;
+
+
+CROSS JOIN Syntax:
+-------------------
+SELECT column_name(s)
+FROM table1
+CROSS JOIN table2;
+A CROSS JOIN produces a cartesian product between the two tables, returning all possible combinations of all rows. It has no ON clause because
+
+ you're just joining everything to everything. A FULL OUTER JOIN is a combination of a LEFT OUTER and RIGHT OUTER JOIN 
+
+Note: The CROSS JOIN keyword returns all matching records from both tables whether the other table matches or not. So, if there are rows in "Customers" that do not have matches in "Orders", or if there are rows in "Orders" that do not have matches in "Customers", those rows will be listed as well.
+
+If you add a WHERE clause (if table1 and table2 has a relationship), the CROSS JOIN will produce the same result as the INNER JOIN clause:
+
+
+UNION Syntax:
+----------------------
+SELECT column_name(s) FROM table1
+UNION
+SELECT column_name(s) FROM table2;
+
+
+UNION ALL Syntax:
+------------------------
+The UNION operator selects only distinct values by default. To allow duplicate values, use UNION ALL:
+
+SELECT column_name(s) FROM table1
+UNION ALL
+SELECT column_name(s) FROM table2;
+
+Note: The column names in the result-set are usually equal to the column names in the first SELECT statement.
+
+UNION With WHERE:
+------------------------
+Example
+SELECT City, Country FROM Customers
+WHERE Country='Germany'
+UNION
+SELECT City, Country FROM Suppliers
+WHERE Country='Germany'
+ORDER BY City;
+
+UNION ALL With WHERE:
+--------------------------
+
+Example
+SELECT City, Country FROM Customers
+WHERE Country='Germany'
+UNION ALL
+SELECT City, Country FROM Suppliers
+WHERE Country='Germany'
+ORDER BY City;
+
+Another UNION Example:
+---------------------------
+
+Example
+SELECT 'Customer' AS Type, ContactName, City, Country
+FROM Customers
+UNION
+SELECT 'Supplier', ContactName, City, Country
+FROM Suppliers;
+
+Notice the "AS Type" above - it is an alias. SQL Aliases are used to give a table or a column a temporary name. 
+An alias only exists for the duration of the query. So, here we have created a temporary column named "Type", that 
+list whether the contact person is a "Customer" or a "Supplier".
+
+Natural Join:
+------------------------
+In MySQL, the NATURAL JOIN is such a join that performs the same task as an INNER or LEFT JOIN, in which the ON or USING clause refers to all columns that the tables to be joined have in common.
+
+The MySQL NATURAL JOIN is structured in such a way that, columns with the same name of associate tables will appear once only.
+
+Natural Join: Guidelines:
+
+The associated tables have one or more pairs of identically named columns.
+The columns must be the same data type.
+Don’t use ON clause in a NATURAL JOIN.
+
+The SQL NATURAL JOIN is a type of EQUI JOIN and is structured in such a way that,
+ columns with the same name of associated tables will appear once only.
+
+
+
